@@ -39,6 +39,7 @@ class DialogBotRuGPTSmall:
         # Генерация ответа
         with torch.no_grad(): #(отключаем вычисление градиента => не меняем веса модели)
             generated_token_ids = self.model.generate(
+                # Распаковка ключевых слов
                 **tokenized_text,
                 top_k=10,
                 top_p=0.95,

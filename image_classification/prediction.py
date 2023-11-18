@@ -25,6 +25,8 @@ class ResNetImagePredictor:
             prediction = self.model(batch).squeeze(0).softmax(0)
 
             # Форматирование топ-3 результатов
+            # zip - совмещение списков в один
+            # topk возвращает k крупнейших (или наименьших) элементов по заданному измерению.
             results = [f"{self.weights.meta['categories'][i]}: " + f"{100 * v:.1f}%"
                        for v, i in zip(*torch.topk(prediction, 3))]
 
